@@ -57,6 +57,7 @@ def editar_status(id):
 def atualizar_status():
     tarefa = Tarefas.query.filter_by(idTarefa=request.form['txtId']).first()
     tarefa.statusTarefa = request.form['txtStatus']
+    tarefa.tarefa = request.form['txtTarefa']
 
     db.session.commit()
     flash("Status da tarefa atualizada", "success")
