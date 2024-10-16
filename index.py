@@ -1,5 +1,6 @@
-from flask import Flask, redirect, render_template, flash, request
+from flask import Flask, redirect, render_template, flash, request, session
 from flask_sqlalchemy import SQLAlchemy
+from functools import wraps
 
 app = Flask(__name__)
 
@@ -16,6 +17,9 @@ class Tarefas(db.Model):
     tarefa = db.Column(db.String(50), nullable=False)
     statusTarefa = db.Column(db.String(25), nullable=False)
 
+    def __repr__(self):
+        return '<Tarefa %r>' % self.tarefa
+    
 @app.route('/inicio')
 def ola():
     return "<h1> Iniciando o flask </h1>"
@@ -64,6 +68,23 @@ def excluir_tarefa(id):
     db.session.commit()
     flash("Tarefa deletada", "error")
     return redirect("/lista")
+
+@app.route('/login')
+def login_page():
+    return render_template('login.html')
+
+@app.route('/autenticar', methods=['POST']) 
+def autenticar():
+    login = request.form['txtLogin']
+    senha = request.form['txtSenha']
+
+    if login == 'admin' and senha == 'admin':
+        session['usuario_logado'] = login
+        flash("Usuário logado com sucesso", "success")
+        return redirect("/lista")
+    else:
+        flash("Login ou senha incorretos", "error")
+        return redirect('/login')
 
 
 app.run()
