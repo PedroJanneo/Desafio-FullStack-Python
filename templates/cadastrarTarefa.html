@@ -1,0 +1,30 @@
+{% extends "estrutura.html" %}
+
+{% block conteudo %}
+
+<form action="/adicionar" method="post">
+    <div class="container">
+        <div class="mb-3">
+            <label class="form-label">Tarefa</label>
+            <input
+                type="text"
+                name="txtTarefa"
+                class="form-control"
+                placeholder="Digite a Tarefa"
+                required
+            />
+        </div>
+        <div class="mb-3">
+            <label>Status da Tarefa</label>
+            <select class="form-select" name="txtStatus">
+                <option value="Pendente">Pendente</option>
+                <option value="Completa">Completa</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-dark" type="submit">Cadastrar Tarefa</button> 
+        </div>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "estrutura.html" %} 
+
+{% block conteudo %}
+
+<h2>{{ descricao }}</h2>
+
+<table class="table table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>Tarefa</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for tarefa in listaTaref %}
+    <tr>
+      <td>{{ tarefa.tarefa }}</td>
+      <td>{{ tarefa.statusTarefa }}</td>
+      <td>
+        <a href="{{ url_for('editar_status', id=tarefa.idTarefa) }}">Editar</a>
+        <a href="{{ url_for('excluir_tarefa', id=tarefa.idTarefa) }}" onclick="return confirm('Você tem certeza que deseja excluir esta tarefa?');">Excluir</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

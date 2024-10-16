@@ -1,0 +1,23 @@
+{% extends "estrutura.html" %}
+
+{% block conteudo %}
+
+<form action="/atualizar" method="post">
+    <input type="hidden" name="txtId" value="{{ tarefa.idTarefa }}">
+
+    <div class="mb-3">
+        <label class="form-label">Tarefa</label>
+        <input type="text" class="form-control" name="txtTarefa" value=" {{ tarefa.tarefa}}">
+    </div>
+    <div class="mb-3">
+        <label for="txtStatus" class="form-label">Status da Tarefa</label>
+        <select name="txtStatus" id="txtStatus" class="form-select">
+            <option value="Pendente" {% if tarefa.statusTarefa == 'Pendente' %}selected{% endif %}>Pendente</option>
+            <option value="Completa" {% if tarefa.statusTarefa == 'Completa' %}selected{% endif %}>Completa</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-dark">Atualizar</button>
+</form>
+
+{% endblock %}
