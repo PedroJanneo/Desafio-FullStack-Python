@@ -10,6 +10,10 @@
         <input type="text" class="form-control" name="txtTarefa" value=" {{ tarefa.tarefa}}">
     </div>
     <div class="mb-3">
+        <label class="form-label">Descrricao</label>
+        <input type="text" class="form-control" name="txtdesc" value=" {{  tarefa.descricao }}">
+    </div>
+    <div class="mb-3">
         <label for="txtStatus" class="form-label">Status da Tarefa</label>
         <select name="txtStatus" id="txtStatus" class="form-select">
             <option value="Pendente" {% if tarefa.statusTarefa == 'Pendente' %}selected{% endif %}>Pendente</option>

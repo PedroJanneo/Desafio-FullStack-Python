@@ -1,6 +1,5 @@
 from flask import Flask, redirect, render_template, flash, request, session
 from flask_sqlalchemy import SQLAlchemy
-from functools import wraps
 
 app = Flask(__name__)
 
@@ -15,6 +14,7 @@ db = SQLAlchemy(app)
 class Tarefas(db.Model):
     idTarefa = db.Column(db.Integer, primary_key=True, autoincrement=True)
     tarefa = db.Column(db.String(50), nullable=False)
+    descricao =db.Column(db.Text, nullable=True)
     statusTarefa = db.Column(db.String(25), nullable=False)
 
     def __repr__(self):
@@ -39,8 +39,9 @@ def cadastrar_tarefa():
 def adicionar_tarefa():
     tarefaP = request.form['txtTarefa']
     statusP = request.form['txtStatus']
+    descricaoP = request.form['txtdesc']
 
-    tarefa_adicionado = Tarefas(tarefa=tarefaP, statusTarefa=statusP)
+    tarefa_adicionado = Tarefas(tarefa=tarefaP, statusTarefa=statusP, descricao =descricaoP)
 
     db.session.add(tarefa_adicionado)
     db.session.commit()
@@ -58,6 +59,7 @@ def atualizar_status():
     tarefa = Tarefas.query.filter_by(idTarefa=request.form['txtId']).first()
     tarefa.statusTarefa = request.form['txtStatus']
     tarefa.tarefa = request.form['txtTarefa']
+    tarefa.descricao = request.form['txtdesc'] 
 
     db.session.commit()
     flash("Status da tarefa atualizada", "success")

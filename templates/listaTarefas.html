@@ -9,6 +9,7 @@
     <tr>
       <th>Tarefa</th>
       <th>Status</th>
+      <th>Descrição</th>
       <th>Ações</th>
     </tr>
   </thead>
@@ -17,6 +18,7 @@
     <tr>
       <td>{{ tarefa.tarefa }}</td>
       <td>{{ tarefa.statusTarefa }}</td>
+      <td>{{ tarefa.descricao }}</td>
       <td>
         <a href="{{ url_for('editar_status', id=tarefa.idTarefa) }}">Editar</a>
         <a href="{{ url_for('excluir_tarefa', id=tarefa.idTarefa) }}" onclick="return confirm('Você tem certeza que deseja excluir esta tarefa?');">Excluir</a>

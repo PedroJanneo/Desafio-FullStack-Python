@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16/10/2024 às 18:44
+-- Tempo de geração: 02/01/2025 às 14:49
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -30,16 +30,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `tarefas` (
   `idTarefa` int(11) NOT NULL,
   `tarefa` varchar(50) NOT NULL,
-  `statusTarefa` varchar(25) NOT NULL
+  `statusTarefa` varchar(25) NOT NULL,
+  `descricao` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `tarefas`
 --
 
-INSERT INTO `tarefas` (`idTarefa`, `tarefa`, `statusTarefa`) VALUES
-(4, '  RH', 'Completa'),
-(5, 'RH2', 'Pendente');
+INSERT INTO `tarefas` (`idTarefa`, `tarefa`, `statusTarefa`, `descricao`) VALUES
+(7, '    Nesse TO DO LIST adicionar um campo de descriç', 'Pendente', NULL),
+(14, 'RH11111111111', 'Pendente', '121');
 
 --
 -- Índices para tabelas despejadas
@@ -59,7 +60,7 @@ ALTER TABLE `tarefas`
 -- AUTO_INCREMENT de tabela `tarefas`
 --
 ALTER TABLE `tarefas`
-  MODIFY `idTarefa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idTarefa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
